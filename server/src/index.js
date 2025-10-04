@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 
 import siteRoutes from './routes/sites.js';
 import emailRoutes from './routes/email.js';
+import authRoutes from './routes/auth.js';
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json({ limit: '2mb' }));
 app.use(morgan('dev'));
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
+app.use('/auth', authRoutes);
 app.use('/sites', siteRoutes);
 app.use('/email', emailRoutes);
 
