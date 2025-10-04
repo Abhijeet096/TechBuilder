@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: #F3F4F6; /* bg-gray-100 */
+    color: #111827; /* text-gray-900 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    color: #4F46E5; /* indigo-600 */
+  }
+  a:hover {
+    color: #6366F1; /* indigo-500 */
+  }
+}
