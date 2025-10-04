@@ -22,8 +22,10 @@ export default function LandingPage() {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-primary/10 blur-3xl opacity-40 rounded-3xl" />
               <div className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-gray-800">
-                <div className="aspect-video rounded-lg bg-gradient-to-br from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/10 flex items-center justify-center text-primary font-semibold">
-                  Instant AI Website Preview
+                <div className="grid grid-cols-3 gap-3">
+                  <img className="rounded-lg aspect-square object-cover animate-float-slow" src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=800&auto=format&fit=crop" alt="preview1" />
+                  <img className="rounded-lg aspect-square object-cover animate-float-fast" src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=800&auto=format&fit=crop" alt="preview2" />
+                  <img className="rounded-lg aspect-square object-cover animate-float-slow" src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=800&auto=format&fit=crop" alt="preview3" />
                 </div>
                 <div className="mt-4 grid grid-cols-3 gap-3 text-xs text-gray-600 dark:text-gray-300">
                   {['SEO Ready','Fast','Responsive'].map(k => (

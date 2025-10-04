@@ -31,3 +31,15 @@ html, body, #root {
 .card-body {
   @apply p-4 sm:p-6;
 }
+
+/* Subtle float animations for visuals */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes floatFast {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+.animate-float-slow { animation: floatSlow 6s ease-in-out infinite; }
+.animate-float-fast { animation: floatFast 4.5s ease-in-out infinite; }

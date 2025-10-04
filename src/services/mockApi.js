@@ -45,9 +45,10 @@ export const mockAuthApi = {
 export const mockSitesApi = {
   async listSites(userId) {
     if (config.apiBaseUrl) {
-      // Example future integration (commented to avoid runtime errors):
-      // const res = await fetch(`${config.apiBaseUrl}/sites?userId=${userId}`);
-      // return await res.json();
+      try {
+        const res = await fetch(`${config.apiBaseUrl}/sites?userId=${encodeURIComponent(userId)}`);
+        if (res.ok) return await res.json();
+      } catch {}
     }
     await delay(400);
     const sites = read(DB_KEYS.SITES, []);
@@ -55,8 +56,10 @@ export const mockSitesApi = {
   },
   async createSite({ userId, business, templateId, content }) {
     if (config.apiBaseUrl) {
-      // const res = await fetch(`${config.apiBaseUrl}/sites`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId, business, templateId, content })});
-      // return await res.json();
+      try {
+        const res = await fetch(`${config.apiBaseUrl}/sites`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId, business, templateId, content })});
+        if (res.ok) return await res.json();
+      } catch {}
     }
     await delay(900);
     const sites = read(DB_KEYS.SITES, []);
@@ -67,8 +70,10 @@ export const mockSitesApi = {
   },
   async getSite(siteId) {
     if (config.apiBaseUrl) {
-      // const res = await fetch(`${config.apiBaseUrl}/sites/${siteId}`);
-      // return await res.json();
+      try {
+        const res = await fetch(`${config.apiBaseUrl}/sites/${siteId}`);
+        if (res.ok) return await res.json();
+      } catch {}
     }
     await delay(300);
     const sites = read(DB_KEYS.SITES, []);
@@ -76,8 +81,10 @@ export const mockSitesApi = {
   },
   async updateSite(siteId, update) {
     if (config.apiBaseUrl) {
-      // const res = await fetch(`${config.apiBaseUrl}/sites/${siteId}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(update) });
-      // return await res.json();
+      try {
+        const res = await fetch(`${config.apiBaseUrl}/sites/${siteId}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(update) });
+        if (res.ok) return await res.json();
+      } catch {}
     }
     await delay(300);
     const sites = read(DB_KEYS.SITES, []);

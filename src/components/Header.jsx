@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 
 export default function Header() {
   const { isAuthenticated, user, logout } = useAuth();
   const { theme, toggle } = useTheme();
+  const navigate = useNavigate();
 
   return (
     <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40">
@@ -21,6 +22,9 @@ export default function Header() {
           <NavLink to="/contact" className={({isActive}) => isActive ? 'text-primary' : 'hover:text-primary'}>Contact</NavLink>
         </nav>
         <div className="flex items-center gap-3">
+          <button onClick={() => navigate(-1)} className="hidden sm:inline-flex text-xs px-2 py-1 rounded border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">
+            ← Back
+          </button>
           <button onClick={toggle} className="hidden sm:inline-flex text-xs px-2 py-1 rounded border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">
             {theme === 'dark' ? 'Light' : 'Dark'}
           </button>
