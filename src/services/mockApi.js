@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import { config } from '../config';
 
 // Simple localStorage-backed mock DB
 const DB_KEYS = {
@@ -43,11 +44,20 @@ export const mockAuthApi = {
 
 export const mockSitesApi = {
   async listSites(userId) {
+    if (config.apiBaseUrl) {
+      // Example future integration (commented to avoid runtime errors):
+      // const res = await fetch(`${config.apiBaseUrl}/sites?userId=${userId}`);
+      // return await res.json();
+    }
     await delay(400);
     const sites = read(DB_KEYS.SITES, []);
     return sites.filter(s => s.userId === userId);
   },
   async createSite({ userId, business, templateId, content }) {
+    if (config.apiBaseUrl) {
+      // const res = await fetch(`${config.apiBaseUrl}/sites`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId, business, templateId, content })});
+      // return await res.json();
+    }
     await delay(900);
     const sites = read(DB_KEYS.SITES, []);
     const site = { id: nanoid(), userId, business, templateId, content, createdAt: Date.now() };
@@ -56,11 +66,19 @@ export const mockSitesApi = {
     return site;
   },
   async getSite(siteId) {
+    if (config.apiBaseUrl) {
+      // const res = await fetch(`${config.apiBaseUrl}/sites/${siteId}`);
+      // return await res.json();
+    }
     await delay(300);
     const sites = read(DB_KEYS.SITES, []);
     return sites.find(s => s.id === siteId);
   },
   async updateSite(siteId, update) {
+    if (config.apiBaseUrl) {
+      // const res = await fetch(`${config.apiBaseUrl}/sites/${siteId}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(update) });
+      // return await res.json();
+    }
     await delay(300);
     const sites = read(DB_KEYS.SITES, []);
     const idx = sites.findIndex(s => s.id === siteId);

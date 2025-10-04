@@ -7,6 +7,9 @@ import SignupPage from './pages/SignupPage';
 import DashboardPage from './pages/DashboardPage';
 import CreateWebsitePage from './pages/CreateWebsitePage';
 import PreviewPage from './pages/PreviewPage';
+import ContactPage from './pages/ContactPage';
+import { ThemeProvider } from './context/ThemeContext';
+import { NotifyProvider } from './context/NotifyContext';
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated } = useAuth();
@@ -18,16 +21,21 @@ function ProtectedRoute({ children }) {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
-        <Route path="/create" element={<ProtectedRoute><CreateWebsitePage /></ProtectedRoute>} />
-        <Route path="/preview/:siteId" element={<ProtectedRoute><PreviewPage /></ProtectedRoute>} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </AuthProvider>
+    <ThemeProvider>
+      <NotifyProvider>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+            <Route path="/create" element={<ProtectedRoute><CreateWebsitePage /></ProtectedRoute>} />
+            <Route path="/preview/:siteId" element={<ProtectedRoute><PreviewPage /></ProtectedRoute>} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </AuthProvider>
+      </NotifyProvider>
+    </ThemeProvider>
   );
 }

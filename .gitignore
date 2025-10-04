@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+.env.*
+# Private runtime config (do not commit!)
+src/config/private.*
+public/private-config.*
+.DS_Store
