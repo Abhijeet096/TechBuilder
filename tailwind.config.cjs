@@ -12,6 +12,9 @@ module.exports = {
         primaryLight: '#6366F1',
         background: '#F3F4F6',
       },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'ui-sans-serif', 'Arial'],
+      },
     },
   },
   plugins: [],

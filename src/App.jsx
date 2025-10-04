@@ -8,6 +8,8 @@ import DashboardPage from './pages/DashboardPage';
 import CreateWebsitePage from './pages/CreateWebsitePage';
 import PreviewPage from './pages/PreviewPage';
 import ContactPage from './pages/ContactPage';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import { ThemeProvider } from './context/ThemeContext';
 import { NotifyProvider } from './context/NotifyContext';
 
@@ -28,6 +30,8 @@ export default function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
+            <Route path="/forgot" element={<ForgotPassword />} />
+            <Route path="/reset" element={<ResetPassword />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
             <Route path="/create" element={<ProtectedRoute><CreateWebsitePage /></ProtectedRoute>} />

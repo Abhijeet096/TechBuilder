@@ -46,7 +46,10 @@ export const mockSitesApi = {
   async listSites(userId) {
     if (config.apiBaseUrl) {
       try {
-        const res = await fetch(`${config.apiBaseUrl}/sites?userId=${encodeURIComponent(userId)}`);
+        const token = localStorage.getItem('awb_token');
+        const res = await fetch(`${config.apiBaseUrl}/sites?userId=${encodeURIComponent(userId)}`, {
+          headers: token ? { 'Authorization': `Bearer ${token}` } : {},
+        });
         if (res.ok) return await res.json();
       } catch {}
     }
@@ -57,7 +60,8 @@ export const mockSitesApi = {
   async createSite({ userId, business, templateId, content }) {
     if (config.apiBaseUrl) {
       try {
-        const res = await fetch(`${config.apiBaseUrl}/sites`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId, business, templateId, content })});
+        const token = localStorage.getItem('awb_token');
+        const res = await fetch(`${config.apiBaseUrl}/sites`, { method: 'POST', headers: { 'Content-Type': 'application/json', ...(token ? { 'Authorization': `Bearer ${token}` } : {}) }, body: JSON.stringify({ userId, business, templateId, content })});
         if (res.ok) return await res.json();
       } catch {}
     }
@@ -71,7 +75,8 @@ export const mockSitesApi = {
   async getSite(siteId) {
     if (config.apiBaseUrl) {
       try {
-        const res = await fetch(`${config.apiBaseUrl}/sites/${siteId}`);
+        const token = localStorage.getItem('awb_token');
+        const res = await fetch(`${config.apiBaseUrl}/sites/${siteId}`, { headers: token ? { 'Authorization': `Bearer ${token}` } : {} });
         if (res.ok) return await res.json();
       } catch {}
     }
@@ -82,7 +87,8 @@ export const mockSitesApi = {
   async updateSite(siteId, update) {
     if (config.apiBaseUrl) {
       try {
-        const res = await fetch(`${config.apiBaseUrl}/sites/${siteId}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(update) });
+        const token = localStorage.getItem('awb_token');
+        const res = await fetch(`${config.apiBaseUrl}/sites/${siteId}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json', ...(token ? { 'Authorization': `Bearer ${token}` } : {}) }, body: JSON.stringify(update) });
         if (res.ok) return await res.json();
       } catch {}
     }
